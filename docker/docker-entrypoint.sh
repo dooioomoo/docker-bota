@@ -11,11 +11,12 @@ BTFILE='/etc/init.d/bt';
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
+echo nameserver $DNS1 > /etc/resolv.conf
+echo nameserver $DNS2 >> /etc/resolv.conf
+echo options ndots:0 >> /etc/resolv.conf
+
 if [ $1 != '/usr/sbin/init' ];then
 
-	echo nameserver $DNS1 > /etc/resolv.conf
-	echo nameserver $DNS2 >> /etc/resolv.conf
-	echo options ndots:0 >> /etc/resolv.conf
 	
 	if [ ! -f "$BTFILE" ]; then
 		set -eux
