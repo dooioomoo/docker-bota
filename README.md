@@ -14,7 +14,9 @@
 git clone https://github.com/dooioomoo/docker-bota.git ./
 ```
 
-3. windows下运行build.bat,或者
+3. ``` copy .env-example .env ```
+
+4. windows下运行build.bat,或者
 
 ```cmd
 docker-compose -p bota up -d --build bota && docker exec -it os sh entrypoint.sh /bin/bash
