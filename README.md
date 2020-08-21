@@ -2,6 +2,25 @@
 
 非常棒的宝塔配置脚本。具体请参考 [ifui/baota](https://github.com/ifui/baota)
 
+
+# 使用方法
+
+
+1. 在计算机某处创建一个目录，用来存放服务器内容
+
+2. 从github下载
+
+```git
+git clone https://github.com/dooioomoo/docker-bota.git ./
+```
+
+3. windows下运行build.bat,或者
+
+```cmd
+docker-compose -p bota up -d --build bota && docker exec -it os sh entrypoint.sh /bin/bash
+```
+
+
 # 修改项目
 
 - env文件增加了xdebug的expose端口对应。默认是9003，方便宝塔对应远程php调试。
