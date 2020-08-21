@@ -1,0 +1,6 @@
+.DS_Store
+.env
+/wwwlogs
+/wwwroot
+/backup
+/docker/backup/export

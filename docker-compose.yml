@@ -1,0 +1,63 @@
+version: "3"
+services:
+    bota:
+        container_name: os
+        build:
+            context: ./docker
+            args:
+                - CENTOS_VERSION=${CENTOS_VERSION}
+                - BAOTA_INSTALL_PATH=${BAOTA_INSTALL_PATH}
+                - BAOTA_USERNAME=${BAOTA_USERNAME}
+                - BAOTA_PASSWORD=${BAOTA_PASSWORD}
+                - DNS1=${DNS1}
+                - DNS2=${DNS2}
+        stdin_open: true
+        tty: true
+        privileged: true
+        user: root
+        restart: always
+        dns:
+            - ${DNS1}
+            - ${DNS2}
+        ports:
+            - ${BAOTA_PORT}:8888
+            - ${WEB_PORT}:80
+            - ${HTTPS_PORT}:443
+            - ${FTP_DATA_PORT}:20
+            - ${FTP_PORT}:21
+            - ${SSH_PORT}:22
+            - ${MYSQL_PORT}:3306
+            - ${PHPMYADMIN_PORT}:888
+        expose:
+            - ${XDEBUG_PORT}
+        volumes:
+            - www:/www
+            - usr:/usr
+            - etc:/etc
+            - ${WEB_PATH}:/www/wwwroot
+            - ${BACKUP_PATH}:/www/backup
+            - ${LOGS_PATH}:/www/wwwlogs
+    bota_backup:
+        container_name: backup
+        build:
+            context: ./docker/backup
+        depends_on:
+            - bota
+        stdin_open: true
+        tty: true
+        privileged: true
+        volumes:
+            - ./docker/backup/export:/docker_backup/export
+            - www:/docker_backup/data/www
+            - usr:/docker_backup/data/usr
+            - etc:/docker_backup/data/etc
+volumes:
+    www:
+        driver: ${VOLUMES_DRIVER}
+    usr:
+        driver: ${VOLUMES_DRIVER}
+    etc:
+        driver: ${VOLUMES_DRIVER}
+networks:
+    default:
+        driver: ${NETWORKS_DRIVER}
