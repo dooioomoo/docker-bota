@@ -7,9 +7,9 @@ RUN groupadd -f www && useradd -g www www
 
 # install pkg
 RUN yum install -y wget \
-    && yum install -y ca-certificates \
-    && yum install -y openssh-server sudo\
-    && yum install -y gd gcc-c++ libtirpc
+	&& yum install -y ca-certificates \
+	&& yum install -y openssh-server sudo \
+	&& yum install -y gd gcc-c++ libtirpc
 
 
 COPY ./docker-entrypoint.sh /entrypoint.sh
@@ -32,7 +32,7 @@ RUN chmod +x /entrypoint.sh && sed -i "s/\r//" /entrypoint.sh \
 	&& sed -i "s|BOTAUSERNAME=\$2|BOTAUSERNAME=$BAOTA_USERNAME|" /entrypoint.sh \
 	&& sed -i "s|BOTAPASSWORD=\$3|BOTAPASSWORD=$BAOTA_PASSWORD|" /entrypoint.sh \
 	&& sed -i "s|DNS1=8.8.8.8|DNS1=$DNS1|" /entrypoint.sh \
-	&& sed -i "s|DNS2=8.8.4.4|DNS2=$DNS2|" /entrypoint.sh 
+	&& sed -i "s|DNS2=8.8.4.4|DNS2=$DNS2|" /entrypoint.sh
 
 #ENTRYPOINT /entrypoint.sh $BAOTA_INSTALL_PATH $BAOTA_USERNAME $BAOTA_PASSWORD
 
