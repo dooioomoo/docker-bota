@@ -30,6 +30,7 @@ services:
             - ${PHPMYADMIN_PORT}:888
         expose:
             - ${XDEBUG_PORT}
+            - 39000-40000
         volumes:
             - www:/www
             - usr:/usr
