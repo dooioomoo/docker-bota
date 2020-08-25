@@ -25,7 +25,7 @@ Menu_List() {
 }
 
 Menu_Case() {
-    if [[echo $1 | grep -q '[^0-9]']] || [[ $1 != 0 ]]; then
+    if [[echo $1 | sed -n "[^0-9]\+$/p"]]; then
         echo -e "\e[31m请输入正确的数字选项！\e[0m"
         exit 1
     fi
