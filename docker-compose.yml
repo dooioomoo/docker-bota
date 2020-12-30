@@ -1,6 +1,6 @@
 version: "3"
 services:
-    bota:
+    os:
         container_name: os
         build:
             context: ./docker
@@ -38,12 +38,12 @@ services:
             - ${WEB_PATH}:/www/wwwroot
             - ${BACKUP_PATH}:/www/backup
             - ${LOGS_PATH}:/www/wwwlogs
-    bota_backup:
+    backup:
         container_name: backup
         build:
             context: ./docker/backup
         depends_on:
-            - bota
+            - os
         stdin_open: true
         tty: true
         privileged: true
