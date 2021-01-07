@@ -28,8 +28,8 @@ services:
             - ${SSH_PORT}:22
             - ${MYSQL_PORT}:3306
             - ${PHPMYADMIN_PORT}:888
+            - ${XDEBUG_PORT}:${XDEBUG_PORT}
         expose:
-            - ${XDEBUG_PORT}
             - 39000-40000
         volumes:
             - www:/www
@@ -38,6 +38,8 @@ services:
             - ${WEB_PATH}:/www/wwwroot
             - ${BACKUP_PATH}:/www/backup
             - ${LOGS_PATH}:/www/wwwlogs
+        environment:
+            XDEBUG_CONFIG: "idekey=PHPSTORM remote_port=9003 remote_enable=1 auto_trace=true default_enable=1 remote_connect_back=1 remote_autostart=1 remote_handler=dbgp remote_log=/tmp/xdebug.log profiler_enable=1 profiler_output_dir=/tmp/xdebug-profiler remote_mode=req cli_color=1 force_display_errors = On var_display_max_children=-1 var_display_max_data=-1 var_display_max_depth=-1 scream=0 show_local_vars=1"
     backup:
         container_name: backup
         build:
