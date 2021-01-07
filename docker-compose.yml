@@ -39,7 +39,7 @@ services:
             - ${BACKUP_PATH}:/www/backup
             - ${LOGS_PATH}:/www/wwwlogs
         environment:
-            XDEBUG_CONFIG: "idekey=PHPSTORM client_host=host.docker.internal client_port=9003 discover_client_host=1"
+            XDEBUG_CONFIG: "idekey=PHPSTORM client_host=host.docker.internal client_port=9003 discover_client_host=1 mode=debug"
     backup:
         container_name: backup
         build:
