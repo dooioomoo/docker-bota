@@ -19,7 +19,7 @@ git clone https://github.com/dooioomoo/docker-bota.git ./
 4. windows下运行build.bat,或者
 
 ```cmd
-docker-compose -p bota up -d --build bota && docker exec -it os sh entrypoint.sh /bin/bash
+docker-compose -p bota up -d --build && docker exec -it os sh entrypoint.sh /bin/bash
 ```
 
 
@@ -57,4 +57,15 @@ sh /docker_backup/export.sh
 ```
 sh /docker_backup/import.sh
 ```
+
+# WSL2注意事项
+
+1. gulp需要在wsl中安装，不然无法运行watch
+
+
+## XDEBUG运行时要点
+
+1. 使用HTTP_X_FORWARDED_FOR时，是hostname -I的ip而不是/etc/resolv.conf的ip
+2. vscode中，是使用的本地路径必须是 ${workspaceFolder}√,${workspaceRoot}×
+3. 使用remote-wsl来进行远程工作
 
